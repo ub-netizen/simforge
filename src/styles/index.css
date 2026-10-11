@@ -1,0 +1,78 @@
+@import 'tailwindcss';
+
+/*
+ * SimForge design tokens. Dark-first engineering workstation palette:
+ * neutral graphite surfaces, one warm accent used sparingly, and
+ * reserved semantic colors for analysis results.
+ */
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --color-bg: #0b0d10;
+  --color-panel: #111419;
+  --color-panel-2: #161a21;
+  --color-raised: #1c212a;
+  --color-line: #242a33;
+  --color-line-strong: #323a46;
+  --color-fg: #e4e7eb;
+  /* Text tokens meet WCAG AA (4.5:1) on every surface, including --color-raised. */
+  --color-muted: #a3abb6;
+  --color-faint: #818a97;
+
+  --color-accent: #ff8a3d;
+  --color-accent-strong: #ff9d5c;
+  --color-accent-ink: #1a0d03;
+
+  /* Model drawing. */
+  --color-member: #c3c9d2;
+  --color-load: #ff8a3d;
+
+  /* Reserved for results: tension / compression / reactions / deformed shape. */
+  --color-tension: #4ea1ff;
+  --color-compression: #ff5d5d;
+  --color-reaction: #3ecf8e;
+  --color-deformed: #f5c542;
+
+  --color-grid-minor: #161b22;
+  --color-grid-major: #1f2630;
+  --color-axis: #3a4452;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans;
+    font-feature-settings: 'ss02';
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
